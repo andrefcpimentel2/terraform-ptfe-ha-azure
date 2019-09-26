@@ -1,5 +1,6 @@
 variable "tenant_id" {}
 variable "object_id" {}
+variable "application_id" {}
 variable "certificate_path" {}
 variable "cert_password" {}
 variable "license_file" {}
@@ -15,12 +16,13 @@ locals {
 }
 
 module "boostrap" {
-  source              = "git::ssh://git@github.com/hashicorp/private-terraform-enterprise.git//examples/bootstrap-azure?ref=master"
+  source              = "./bootstrap-azure"
+//   #source              = "git::ssh://git@github.com/hashicorp/private-terraform-enterprise.git//examples/bootstrap-azure?ref=master"
   location            = "${var.location}"
   prefix              = "${var.prefix}"
   key_vault_tenant_id = "${var.tenant_id}"
   key_vault_object_id = "${var.object_id}"
-  service_principal_id = "${var.service_principal_id}"
+  application_id      = "${var.application_id}"
 
   additional_tags = {
     Application = "Terraform Enterprise"
@@ -46,7 +48,9 @@ module "terraform_enterprise" {
 output "terraform_enterprise" {
   value = {
     application_endpoint         = "${module.terraform_enterprise.application_endpoint}"
+    application_health_check     = "${module.terraform_enterprise.application_health_check}"
     installer_dashboard_password = "${module.terraform_enterprise.installer_dashboard_password}"
+    installer_dashboard_endpoint = "${module.terraform_enterprise.installer_dashboard_endpoint}"
     ssh_config                   = "${module.terraform_enterprise.ssh_config_file}"
     ssh_private_key              = "${module.terraform_enterprise.ssh_private_key}"
     primary_public_ip            = "${module.terraform_enterprise.primary_public_ip}"
