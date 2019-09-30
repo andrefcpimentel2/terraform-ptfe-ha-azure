@@ -15,7 +15,7 @@ locals {
   license_path     = "${var.license_file}"
 }
 
-module "boostrap" {
+module "bootstrap" {
   source              = "./bootstrap-azure"
 //   #source              = "git::ssh://git@github.com/hashicorp/private-terraform-enterprise.git//examples/bootstrap-azure?ref=master"
   location            = "${var.location}"
@@ -36,13 +36,13 @@ module "terraform_enterprise" {
 #   version                      = "0.0.2-beta"
   domain                       = "${var.domain}"
   domain_resource_group_name   = "${var.domain_rg_name}"
-  key_vault_name               = "${module.boostrap.key_vault_name}"
+  key_vault_name               = "${module.bootstrap.key_vault_name}"
   license_file                 = "${local.license_path}"
-  resource_group_name          = "${module.boostrap.resource_group_name}"
-  subnet                       = "${module.boostrap.subnet}"
+  resource_group_name          = "${module.bootstrap.resource_group_name}"
+  subnet                       = "${module.bootstrap.subnet}"
   tls_pfx_certificate          = "${local.certificate_path}"
   tls_pfx_certificate_password = "${var.cert_password}"
-  virtual_network_name         = "${module.boostrap.virtual_network_name}"
+  virtual_network_name         = "${module.bootstrap.virtual_network_name}"
 }
 
 output "terraform_enterprise" {
