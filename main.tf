@@ -9,6 +9,18 @@ variable "domain_rg_name" {}
 variable "prefix" {}
 variable "owner_name" {}
 variable "location" {}
+variable "resource_prefix" {}
+variable "storage_image" {
+  type        = "map"
+  description = "A list of the data to define the os version image to build from"
+
+  default = {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
+}
 
 locals {
   certificate_path = "${var.certificate_path}"
@@ -25,21 +37,23 @@ module "bootstrap" {
   application_id      = "${var.application_id}"
 
   additional_tags = {
-    Application = "Terraform Enterprise"
+    Application = "Terraform Enterprise Beta"
     Owner       = "${var.owner_name}"
   }
 }
 
 module "terraform_enterprise" {
   source                       = "git::ssh://git@github.com/hashicorp/terraform-azurerm-terraform-enterprise.git"
-#   source                       = "hashicorp/terraform-enterprise/azurerm"
-#   version                      = "0.0.2-beta"
+  # source                       = "hashicorp/terraform-enterprise/azurerm"
+  # version                      = "0.0.3-beta"
   domain                       = "${var.domain}"
   domain_resource_group_name   = "${var.domain_rg_name}"
   key_vault_name               = "${module.bootstrap.key_vault_name}"
   license_file                 = "${local.license_path}"
   resource_group_name          = "${module.bootstrap.resource_group_name}"
+  resource_prefix              = "${var.resource_prefix}"
   subnet                       = "${module.bootstrap.subnet}"
+  storage_image                = "${var.storage_image}"
   tls_pfx_certificate          = "${local.certificate_path}"
   tls_pfx_certificate_password = "${var.cert_password}"
   virtual_network_name         = "${module.bootstrap.virtual_network_name}"
