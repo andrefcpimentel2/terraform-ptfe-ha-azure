@@ -30,10 +30,8 @@ You can do this with a terraform.tfvars file or you could use terraform cloud.
 
 Run the commands
 
-'''
-terraform plan
-'''
+```terraform init```
 
-'''
-terraform apply
-'''
+```terraform plan```
+
+```terraform apply```
