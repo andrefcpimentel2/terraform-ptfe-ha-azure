@@ -11,7 +11,7 @@
 
 ## Populate the variables
 
-variable "tenant_id" {}
+```variable "tenant_id" {}
 variable "object_id" {}
 variable "application_id" {}
 variable "certificate_path" {}
@@ -23,6 +23,7 @@ variable "prefix" {}
 variable "owner_name" {}
 variable "location" {}
 variable "resource_prefix" {}
+```
 
 You can do this with a terraform.tfvars file or you could use terraform cloud.
 
