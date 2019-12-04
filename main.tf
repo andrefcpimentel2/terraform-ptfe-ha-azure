@@ -28,13 +28,13 @@ locals {
 }
 
 module "bootstrap" {
-  source              = "./bootstrap-azure"
-//   #source              = "git::ssh://git@github.com/hashicorp/private-terraform-enterprise.git//examples/bootstrap-azure?ref=master"
+  # source              = "./bootstrap-azure"
+  source              = "git::ssh://git@github.com/hashicorp/private-terraform-enterprise.git//examples/bootstrap-azure?ref=master"
   location            = "${var.location}"
   prefix              = "${var.prefix}"
   key_vault_tenant_id = "${var.tenant_id}"
   key_vault_object_id = "${var.object_id}"
-  application_id      = "${var.application_id}"
+  # application_id      = "${var.application_id}"
 
   additional_tags = {
     Application = "Terraform Enterprise Beta"
@@ -63,6 +63,7 @@ output "terraform_enterprise" {
   value = {
     application_endpoint         = "${module.terraform_enterprise.application_endpoint}"
     application_health_check     = "${module.terraform_enterprise.application_health_check}"
+    install_id                   = "${module.terraform_enterprise.install_id}"
     installer_dashboard_password = "${module.terraform_enterprise.installer_dashboard_password}"
     installer_dashboard_endpoint = "${module.terraform_enterprise.installer_dashboard_endpoint}"
     ssh_config                   = "${module.terraform_enterprise.ssh_config_file}"
