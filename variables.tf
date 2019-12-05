@@ -1,10 +1,17 @@
+variable "tenant_id" {}
+variable "object_id" {}
+variable "certificate_path" {}
+variable "cert_password" {}
 variable "license_file" {}
 variable "domain" {}
 variable "domain_rg_name" {}
 variable "prefix" {}
 variable "owner_name" {}
-variable "location" {}
+variable "location" {
+    default = "UK South"
+}
 variable "resource_prefix" {}
+
 variable "storage_image" {
   type        = "map"
   description = "A list of the data to define the os version image to build from"

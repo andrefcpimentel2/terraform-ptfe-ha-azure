@@ -2,20 +2,14 @@
 
 ## What you need
 
-1. terraform 11 cli
-2. DNS domain hosted by azure
-3. Terrafrom License file
-4. SSL certificate  (2048) wildcard
-5. azure login
-6. service principal id
+1. terraform 11 cli (you can use `get_tf.sh`)
+2. DNS domain hosted by Azure
+3. Terraform License file
+4. azure cli logged in
 
 ## Populate the variables
 
-```variable "tenant_id" {}
-variable "object_id" {}
-variable "application_id" {}
-variable "certificate_path" {}
-variable "cert_password" {}
+```
 variable "license_file" {}
 variable "domain" {}
 variable "domain_rg_name" {}
@@ -27,12 +21,14 @@ variable "resource_prefix" {}
 
 You can do this with a terraform.tfvars file or you could use terraform cloud.
 
+
 ## Deploy
 
 Run the commands
+```bash get_tf.sh```
 
-```terraform init```
+```./terraform init```
 
-```terraform plan```
+```./terraform plan```
 
-```terraform apply```
+```./terraform apply```
