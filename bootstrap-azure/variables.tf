@@ -34,13 +34,8 @@ variable "key_vault_tenant_id" {
 }
 
 variable "key_vault_object_id" {
-  description = "The object ID of the service principal for the vault."
+  description = "The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault."
 }
-
-variable "application_id" {
-  description = "The application ID of the service principal for the vault."
-}
-
 
 locals {
   prefix               = "${element(coalescelist(random_pet.prefix.*.id, list(var.prefix)), 0)}"

@@ -7,7 +7,7 @@
 
 # .tfvars files
 *.tfvars
-
+*.rli
 *work*
-
+*.pfx
 .DS_Store
