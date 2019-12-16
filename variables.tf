@@ -1,7 +1,3 @@
-variable "tenant_id" {}
-variable "object_id" {}
-variable "certificate_path" {}
-variable "cert_password" {}
 variable "license_file" {}
 variable "domain" {}
 variable "domain_rg_name" {}

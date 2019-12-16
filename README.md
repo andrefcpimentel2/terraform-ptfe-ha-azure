@@ -27,6 +27,8 @@ You can do this with a terraform.tfvars file or you could use terraform cloud.
 Run the commands
 ```bash get_tf.sh```
 
+```./create_pfx.sh ric.aws.hashidemos.io```
+
 ```./terraform init```
 
 ```./terraform plan```

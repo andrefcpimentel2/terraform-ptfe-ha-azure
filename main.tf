@@ -15,13 +15,6 @@ module "bootstrap" {
   }
 }
 
-resource "null_resource" "create_pfx_cert" {
-  provisioner "local-exec" {
-    command = "create_pfx.sh ${var.domain}"
-    interpreter = ["bash"]
-  }
-}
-
 module "terraform_enterprise" {
   # source                       = "git::ssh://git@github.com/hashicorp/terraform-azurerm-terraform-enterprise.git"
   source = "hashicorp/terraform-enterprise/azurerm"
